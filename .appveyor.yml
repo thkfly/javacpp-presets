@@ -7,10 +7,12 @@ cache:
 
 environment:
   matrix:
-    - SECONDS: 3600
-    - SECONDS: 7200
     - SECONDS: 10800
-    - SECONDS: 14000
+      PROJ: "opencv,flandmark"
+      OS: windows-x86_64
+    - SECONDS: 10
+      PROJ: "tensorflow"
+      OS: windows-x86_64
 #    - PROJ: "opencv,flandmark"
 #      OS: windows-x86
 #    - PROJ: "ffmpeg"
@@ -135,8 +137,8 @@ install:
 
 build_script:
     - ps: Start-sleep -s $env:SECONDS
-#    - 'echo build step for %PROJ%'
-#    - '%APPVEYOR_BUILD_FOLDER%\ci\build.cmd "%PROJ%"'
+    - 'echo build step for %PROJ%'
+    - '%APPVEYOR_BUILD_FOLDER%\ci\build.cmd "%PROJ%"'
 
 test_script:
     - 'echo no tests'
