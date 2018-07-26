@@ -65,12 +65,14 @@ IF "%APPVEYOR_PULL_REQUEST_NUMBER%"=="" (
     echo Deploy platform %%a 
     cd %%a
     call mvn clean deploy -B -U --settings ..\ci\settings.xml -f platform -Dmaven.test.skip=true %MAVEN_RELEASE% -Djavacpp.platform=%OS% -Djavacpp.platform.extension=%EXT%
+    echo A
     IF ERRORLEVEL 1 (
       echo Quitting with error  
       exit /b 1
     )
-
-    cd ..
+    echo B
+    exit /b 0
+    echo C
    )
 ) ELSE (
    echo Install %PROJ%
@@ -81,4 +83,7 @@ IF "%APPVEYOR_PULL_REQUEST_NUMBER%"=="" (
    )
 
 )
+echo D
+exit /b 0
+echo E
 
