@@ -7,9 +7,11 @@ cache:
 
 environment:
   matrix:
-    - PROJ: "opencv,flandmark"
+    - SECONDS: 10800
+      PROJ: "opencv,flandmark"
       OS: windows-x86_64
-    - PROJ: "tensorflow"
+    - SECONDS: 10
+      PROJ: "tensorflow"
       OS: windows-x86_64
 #    - PROJ: "opencv,flandmark"
 #      OS: windows-x86
@@ -145,7 +147,7 @@ install:
     - 'echo install section'
 
 build_script:
-#    - ps: Start-sleep -s $env:SECONDS
+    - ps: Start-sleep -s $env:SECONDS
     - 'echo build step for %PROJ%'
     - '%APPVEYOR_BUILD_FOLDER%\ci\build.cmd "%PROJ%"'
 
